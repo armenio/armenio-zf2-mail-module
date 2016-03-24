@@ -1,0 +1,27 @@
+{
+	"name": "armenio/armenio-mail",
+	"description": "Mail library",
+	"type": "library",
+	"keywords": [
+		"mail",
+		"helper",
+		"zf2",
+		"armenio"
+	],
+	"homepage": "https://github.com/armenio/armenio-mail",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Rafael Armênio",
+			"email": "rafael.armenio@gmail.com"
+		}
+	],
+	"require": {
+		"zendframework/zendframework": "2.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Aircode\\Mail\\": "src/"
+		}
+	},
+}
