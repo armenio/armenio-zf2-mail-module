@@ -1,1 +1,1 @@
-# armenio-mail
+# armenio-zf2-mail-module
