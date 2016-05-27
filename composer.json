@@ -1,5 +1,5 @@
 {
-	"name": "armenio/armenio-mail",
+	"name": "armenio/armenio-zf2-mail-module",
 	"description": "Mail library",
 	"type": "library",
 	"keywords": [
@@ -8,7 +8,7 @@
 		"zf2",
 		"armenio"
 	],
-	"homepage": "https://github.com/armenio/armenio-mail",
+	"homepage": "https://github.com/armenio/armenio-zf2-mail-module",
 	"license": "MIT",
 	"authors": [
 		{
