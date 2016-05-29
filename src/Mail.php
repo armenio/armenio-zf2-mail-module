@@ -1,9 +1,6 @@
 <?php
 namespace Armenio\Mail;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
 use Zend\Mail\Message;
 use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Part as MimePart;
@@ -18,21 +15,9 @@ use Zend\Mail\Transport\SmtpOptions;
  * @author Rafael Armenio <rafael.armenio@gmail.com>
  * @version 1.0
  */
-class Mail implements ServiceLocatorAwareInterface
+class Mail
 {
-    protected $serviceLocator;
-
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-    }
-
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
-    }
-
-    public function send($config = array())
+	public static function send($config = array())
 	{
 		if( ! empty($config['smtp']) ){
 			$transport = new SmtpTransport(new SmtpOptions(array(
