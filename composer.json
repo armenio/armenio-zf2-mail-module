@@ -1,6 +1,6 @@
 {
 	"name": "armenio/armenio-zf2-mail-module",
-	"description": "Mail library",
+	"description": "Mail Module for Zend Framework 2",
 	"type": "library",
 	"keywords": [
 		"mail",
