@@ -9,6 +9,8 @@ use Zend\Mail\Transport\Sendmail as SendmailTransport;
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mail\Transport\SmtpOptions;
 
+use Zend\Mail\Exception\RuntimeException;
+
 /**
  * Mail
  * 
@@ -17,20 +19,20 @@ use Zend\Mail\Transport\SmtpOptions;
  */
 class Mail
 {
-	public static function send($config = array())
+	public static function send($config = [])
 	{
 		if( ! empty($config['smtp']) ){
-			$transport = new SmtpTransport(new SmtpOptions(array(
+			$transport = new SmtpTransport(new SmtpOptions([
 				'name'			  	=> $config['smtp']['name'],
 				'host'			  	=> $config['smtp']['host'],
 				'port'			  	=> $config['smtp']['port'],
 				'connection_class'  => 'login',
-				'connection_config' => array(
+				'connection_config' => [
 					'username' 	=> $config['smtp']['username'],
 					'password' 	=> $config['smtp']['password'],
-					'ssl'	  	=> $config['smtp']['ssl']
-				),
-			)));
+					'ssl'	  	=> $config['smtp']['ssl'],
+				],
+			]));
 		}else{
 			$param = '';
 			if( ! empty($config['returnPath']) ){
@@ -95,17 +97,17 @@ class Mail
 			
 			$htmlBody .= str_repeat('= ', $config['lineWidth']/2);
 			
-			$htmlBody = '\
-			<html>\
-				<body>\
-					<table>\
-						<tr>\
-							<td>\
-								<div style="font-family: \'courier new\',courier,monospace; font-size: 14px;">' . nl2br($htmlBody) . '</div>\
-							</td>\
-						</tr>\
-					</table>\
-				</body>\
+			$htmlBody = '
+			<html>
+				<body>
+					<table>
+						<tr>
+							<td>
+								<div style="font-family: \'courier new\', courier, monospace; font-size: 14px;">' . nl2br($htmlBody) . '</div>
+							</td>
+						</tr>
+					</table>
+				</body>
 			</html>';
 		}
 
@@ -113,7 +115,7 @@ class Mail
 		$html->type = 'text/html';
 
 		$body = new MimeMessage();
-		$body->setParts(array($html));
+		$body->setParts([$html]);
 
 
 		$message->setBody($body);
@@ -121,7 +123,7 @@ class Mail
 		try{
 			$transport->send($message);
 			return true;
-		}catch(\Zend\Mail\Exception\RuntimeException $e){
+		}catch(RuntimeException $e){
 			return false;
 		}
 	}
